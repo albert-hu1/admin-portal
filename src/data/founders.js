@@ -1,6 +1,7 @@
 export const founders = [
-  { id: 1, name: 'Alice Chen', status: 'active' },
-  { id: 2, name: 'Ben Ortiz', status: 'active' },
-  { id: 3, name: 'Carla Singh', status: 'onboard' },
-  { id: 4, name: 'Darius Patel', status: 'onboard' },
+  { id: 1, name: 'StartUp 1', status: 'active' },
+  { id: 2, name: 'StartUp 2', status: 'active' },
+  { id: 3, name: 'StartUp 3', status: 'onboard' },
+  { id: 4, name: 'StartUp 4', status: 'onboard' },
+  { id: 5, name: 'StartUp 5', status: 'active' },
 ]
