@@ -11,12 +11,12 @@ const drawerWidth = 260
 
 const items = [
 //   { label: 'Dashboard', icon: <DashboardIcon />, to: '/dashboard' },
-  { label: 'Startups', icon: <RocketLaunchIcon />, to: '/startups' },
+  { label: 'Startups', icon: <RocketLaunchIcon />, to: '/' },
   { label: 'AngelInv', icon: <Diversity3Icon />, to: '/angel-inv' },
   { label: 'VC Firm', icon: <BusinessIcon />, to: '/vc-firm' },
   { label: 'Admins', icon: <AdminPanelSettingsIcon />, to: '/admins' },
   { label: 'Stacks', icon: <LayersIcon />, to: '/stacks' },
-  { label: 'Chat', icon: <ChatIcon />, to: '/chat' },
+  { label: 'Chats', icon: <ChatIcon />, to: '/chats' },
 //   { label: 'Founders', icon: <GroupIcon />, to: '/founders' },
 ]
 

@@ -5,7 +5,9 @@ import AngelInvestors from './pages/AngelInvestors'
 import VCFirm from './pages/VCFirm'
 import Admins from './pages/Admins'
 import Stacks from './pages/Stacks'
+import Chats from './pages/Chats'
 import Chat from './pages/Chat'
+import StartupProfile from './pages/StartupProfile'
 
 export default function App() {
   return (
@@ -13,12 +15,14 @@ export default function App() {
       <Routes>
         <Route element={<RootLayout />}>
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-           <Route path="/" element={<Startups />} />
+          <Route path="/" element={<Startups />} />
           <Route path="/angel-inv" element={<AngelInvestors />} />
           <Route path="/vc-firm" element={<VCFirm />} />
           <Route path="/admins" element={<Admins />} />
           <Route path="/stacks" element={<Stacks />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chats" element={<Chats />} />
+          <Route path="/chat/:id" element={<Chat />} />
+          <Route path="/start-up-profile/:id" element={<StartupProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>
