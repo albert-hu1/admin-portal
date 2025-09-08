@@ -21,8 +21,10 @@ export default function PitchCarousel({ pitches }) {
 
     const PrevArrow = ({ className, style, onClick }) => (
         <div
-            className={`${className} custom-prev z-50 bg-white shadow-md rounded-full w-8 h-8 flex items-center justify-center cursor-pointer m-2`}
-            style={{ ...style }}
+            className={`${className} custom-prev z-50 bg-dark shadow-md rounded-full w-8 h-8 flex items-center justify-center cursor-pointer m-2`}
+            style={{
+                ...style
+            }}
             onClick={onClick}
         >
             ‹
@@ -31,7 +33,7 @@ export default function PitchCarousel({ pitches }) {
 
 
     const settings = {
-        dots: true,
+        dots: false,
         infinite: false,
         speed: 600,
         slidesToShow: 1,

@@ -33,7 +33,7 @@ export default function FlowDeck() {
     return (
         <Box>
             {/* Header */}
-            <AppBar position="static" sx={{ boxShadow: "none", backgroundColor: "#0b0f19" }}>
+            <AppBar position="static" sx={{ boxShadow: "none", bgcolor: "#fff", color: "#000" ,pt:2}}>
                 <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
                     {/* Centered Search Bar */}
                     <Box sx={{

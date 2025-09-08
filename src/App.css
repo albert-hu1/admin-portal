@@ -20,9 +20,14 @@
   top: 0 !important;
   transform: none !important;
   z-index: 50 !important;
+  color: #000;
 }
 .slick-next.slick-disabled {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+.slick-prev:before,
+    .slick-next:before {
+        color: #000;
+    }
 
