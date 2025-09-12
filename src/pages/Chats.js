@@ -1,73 +1,51 @@
+import React, { useState } from 'react'
 import {
   Typography,
   Paper,
   Box,
   Grid,
-  List,
-  ListItem,
-  ListItemText,
   Avatar,
-  Divider,
   TextField,
   IconButton,
-  Stack
+  Stack,
+  Divider,
 } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import React from 'react'
-import { useParams } from 'react-router-dom'
 
 export default function Chat() {
-  const history = [
-    { id: 1, date: '01/09/25', time: '10:15:22', agent: 'Alice' },
-    { id: 2, date: '01/09/25', time: '10:17:45', agent: 'Bob' },
-    { id: 3, date: '01/09/25', time: '10:22:10', agent: 'Charlie' },
-  ]
-
-  const messages = [
+  const [messages, setMessages] = useState([
     { id: 1, from: 'founder', text: 'Hello, this is a test message.' },
     { id: 2, from: 'agent', text: 'Thanks, got it!' },
-  ]
-const params = useParams();
+  ])
+  const [input, setInput] = useState('')
+  const [isTyping, setIsTyping] = useState(false)
+
+  const handleSend = () => {
+    if (input.trim() === '') return
+
+    setIsTyping(true)
+
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        { id: prev.length + 1, from: 'founder', text: input },
+      ])
+      setInput('')
+      setIsTyping(false)
+    }, 500) // Simulate typing delay
+  }
+
   return (
-    <Paper sx={{ p: 2, height: '80vh', display: 'flex', flexDirection: 'column' }}>
-      <Typography variant="h6" gutterBottom>
-        Startup {params.id ? `- ${params.id}` : ''} Chat
-      </Typography>
-
-      <Grid container spacing={2} sx={{ flex: 1, overflow: 'hidden' }}>
-        {/* Left panel - History */}
-        <Grid item xs={4} sx={{ borderRight: 1, borderColor: 'divider', overflowY: 'auto' }}>
-          <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: 'bold' }}>
-            History
-          </Typography>
-          <List dense>
-            {history.map((h) => (
-              <React.Fragment key={h.id}>
-                <ListItem>
-                  <ListItemText
-                    primary={`${h.date} ${h.time}`}
-                    secondary={h.agent}
-                    primaryTypographyProps={{ fontSize: 12 }}
-                    secondaryTypographyProps={{ fontSize: 12 }}
-                  />
-                </ListItem>
-                <Divider />
-              </React.Fragment>
-            ))}
-          </List>
-        </Grid>
-
-        {/* Right panel - Messages */}
-        <Grid item xs={8} sx={{ display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ p: 3, maxWidth: 1200, mx: 'auto' }}>
+      <Paper sx={{ p: 4, height: '80vh', display: 'flex', flexDirection: 'column' }}>
+        <Grid item xs={8} sx={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
           <Box sx={{ mb: 1, textAlign: 'center' }}>
             <Typography variant="subtitle1" fontWeight="bold">
-              Startup Name
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Founder Name
+              Capieron Agent
             </Typography>
           </Box>
+          <Divider />
 
           {/* Messages area */}
           <Box
@@ -78,6 +56,7 @@ const params = useParams();
               flexDirection: 'column',
               gap: 1,
               p: 1,
+              pt: 4,
             }}
           >
             {messages.map((msg) => (
@@ -100,7 +79,15 @@ const params = useParams();
                 </Paper>
               </Stack>
             ))}
+
+            {isTyping && (
+              <Typography sx={{ fontStyle: 'italic', color: 'gray', textAlign: 'center' }}>
+                Typing...
+              </Typography>
+            )}
           </Box>
+
+          <Divider />
 
           {/* Input box */}
           <Box sx={{ mt: 1, display: 'flex', alignItems: 'center' }}>
@@ -112,13 +99,18 @@ const params = useParams();
               placeholder="Type a message..."
               fullWidth
               sx={{ mx: 1 }}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleSend()
+              }}
             />
-            <IconButton color="primary">
+            <IconButton color="primary" onClick={handleSend}>
               <SendIcon />
             </IconButton>
           </Box>
         </Grid>
-      </Grid>
-    </Paper>
+      </Paper>
+    </Box>
   )
 }

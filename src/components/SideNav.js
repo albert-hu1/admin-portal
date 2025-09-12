@@ -1,49 +1,65 @@
 import { Drawer, Toolbar, Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Typography } from '@mui/material'
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'
-import Diversity3Icon from '@mui/icons-material/Diversity3'
-import BusinessIcon from '@mui/icons-material/Business'
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
-import LayersIcon from '@mui/icons-material/Layers'
-import ChatIcon from '@mui/icons-material/Chat'
+import Home from '@mui/icons-material/Home';
+import Group from '@mui/icons-material/Group';
+import Lightbulb from '@mui/icons-material/Lightbulb';
+import Diversity3 from '@mui/icons-material/Diversity3';
+import Chat from '@mui/icons-material/Chat';
+import Settings from '@mui/icons-material/Settings';
+import Payment from '@mui/icons-material/Payment';
+import Logout from '@mui/icons-material/Logout';
 import { NavLink, useLocation } from 'react-router-dom'
 
 const drawerWidth = 260
 
-const items = [
-//   { label: 'Dashboard', icon: <DashboardIcon />, to: '/dashboard' },
-  { label: 'Startups', icon: <RocketLaunchIcon />, to: '/' },
-  { label: 'AngelInv', icon: <Diversity3Icon />, to: '/angel-inv' },
-  { label: 'VC Firm', icon: <BusinessIcon />, to: '/vc-firm' },
-  { label: 'Admins', icon: <AdminPanelSettingsIcon />, to: '/admins' },
-  { label: 'Stacks', icon: <LayersIcon />, to: '/stacks' },
-  { label: 'Chats', icon: <ChatIcon />, to: '/chats' },
-//   { label: 'Founders', icon: <GroupIcon />, to: '/founders' },
-]
+const navItems = [
+  { label: 'Flow Deck', icon: <Home />, to: '/' },
+  { label: 'Covenant', icon: <Group />, to: '/covenant' },
+  { label: 'Startups', icon: <Lightbulb />, to: '/startups' },
+  { label: 'AngelInv', icon: <Diversity3 />, to: '/angel-inv' },
+  { label: 'Message', icon: <Chat />, to: '/chats' },
+  { label: 'Settings', icon: <Settings />, to: '/setting' },
+  { label: 'Payment', icon: <Payment />, to: '/payment' },
+  { label: 'Logout', icon: <Logout />, to: '/logout' },
+];
 
-export default function SideNav({ mobileOpen, onClose }) {
+export default function SideNav({ mobileOpen, onClose, onLogout }) {
   const location = useLocation()
 
   const content = (
     <>
       <Toolbar>
         <Box>
-          <Typography variant="h6" fontWeight={800}>Capieron</Typography>
-          <Typography variant="body2" sx={{ opacity: 0.7 }}>Super Admin</Typography>
+          <Typography variant="h5" fontWeight={800}>Capieron</Typography>
+        </Box>
+      </Toolbar>
+      <Divider />
+      <Toolbar>
+        <Box>
+          <Typography variant="h6" fontWeight={500}>Super Admin</Typography>
         </Box>
       </Toolbar>
       <Divider />
       <List>
-        {items.map(item => (
-          <ListItemButton
-            key={item.to}
-            component={NavLink}
-            to={item.to}
-            selected={location.pathname === item.to}
-          >
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.label} />
-          </ListItemButton>
-        ))}
+        {navItems.map(item => (
+          item.label === 'Logout' ? (
+            <ListItemButton
+              key={item.to}
+              onClick={onLogout}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          ) : (
+            <ListItemButton
+              key={item.to}
+              component={NavLink}
+              to={item.to}
+              selected={location.pathname === item.to}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          )))}
       </List>
     </>
   )
