@@ -22,7 +22,7 @@ const navItems = [
   { label: 'Logout', icon: <Logout />, to: '/logout' },
 ];
 
-export default function SideNav({ mobileOpen, onClose }) {
+export default function SideNav({ mobileOpen, onClose, onLogout }) {
   const location = useLocation()
 
   const content = (
@@ -33,24 +33,33 @@ export default function SideNav({ mobileOpen, onClose }) {
         </Box>
       </Toolbar>
       <Divider />
-            <Toolbar>
+      <Toolbar>
         <Box>
           <Typography variant="h6" fontWeight={500}>Super Admin</Typography>
         </Box>
       </Toolbar>
-       <Divider />
+      <Divider />
       <List>
         {navItems.map(item => (
-          <ListItemButton
-            key={item.to}
-            component={NavLink}
-            to={item.to}
-            selected={location.pathname === item.to}
-          >
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.label} />
-          </ListItemButton>
-        ))}
+          item.label === 'Logout' ? (
+            <ListItemButton
+              key={item.to}
+              onClick={onLogout}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          ) : (
+            <ListItemButton
+              key={item.to}
+              component={NavLink}
+              to={item.to}
+              selected={location.pathname === item.to}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          )))}
       </List>
     </>
   )

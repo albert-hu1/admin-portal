@@ -2,16 +2,21 @@ import { useState } from 'react'
 import { Box, Toolbar } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 import SideNav from '../components/SideNav'
+import { useAuth } from '../contexts/AuthContext'
 
 const drawerWidth = 260
 
 export default function RootLayout() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const toggleDrawer = () => setMobileOpen(!mobileOpen)
+  const { logout } = useAuth();
 
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-      <SideNav mobileOpen={mobileOpen} onClose={toggleDrawer} />
+      <SideNav mobileOpen={mobileOpen} onClose={toggleDrawer} onLogout={handleLogout} />
       <Box
         component="main"
         sx={{
